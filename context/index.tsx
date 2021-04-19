@@ -4,78 +4,60 @@ import {
   useContext,
   useReducer,
 } from "react";
-import { ITodo } from "../types";
-
-const todos: ITodo[] = [
-  {
-    id: "todo-1",
-    title: "Complete online JavaScript course",
-    completed: true,
-  },
-  {
-    id: "todo-2",
-    title: "Jog around the park 3x",
-    completed: false,
-  },
-  {
-    id: "todo-3",
-    title: "10 minutes meditation",
-    completed: false,
-  },
-  {
-    id: "todo-4",
-    title: "Read for 1 hour",
-    completed: false,
-  },
-  {
-    id: "todo-5",
-    title: "Pick up groceries",
-    completed: false,
-  },
-  {
-    id: "todo-6",
-    title: "Complete Todo App on Frontend Mentor",
-    completed: false,
-  },
-];
+import { IFilter, ITodo } from "../types";
+import { Action } from "./action";
+import { ActionType } from "./actionTypes";
 
 interface IAppState {
   darkMode: boolean;
   todos: ITodo[];
   loading: boolean;
   error: "";
+  filter: IFilter;
 }
 
 const reducer = (state: IAppState, action: Action) => {
   switch (action.type) {
-    case "CREATE_TODO":
+    case ActionType.FETCH_TODOS:
       return {
         ...state,
-        todos: state.todos.push(action.payload),
+        todos: action.payload,
+        loading: false,
       };
-    case "DELETE_TODO":
+    case ActionType.CREATE_TODO:
+      return {
+        ...state,
+        todos: [...state.todos, action.payload],
+      };
+    case ActionType.DELETE_TODO:
       return {
         ...state,
         todos: state.todos.filter((todo) => todo.id !== action.payload.id),
       };
-    case "UPDATE_TODO":
+    case ActionType.UPDATE_TODO:
       // const todoIndex = state.todos.findIndex(state.todos)
 
       return {
         ...state,
         todos: state.todos.push(action.payload),
       };
-    case "LOADING":
+    case ActionType.CLEAR_COMPLETED_TODOS:
       return {
         ...state,
-        loading: !state.loading,
+        todos: state.todos.filter((todo) => todo.completed === false),
       };
-    case "ERROR":
+    case ActionType.LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ActionType.ERROR:
       return {
         ...state,
         error: action.payload,
+        loading: false,
       };
-    case "TOGGLE_DARK_MODE":
+    case ActionType.TOGGLE_DARK_MODE:
       return {
         ...state,
         darkMode: !state.darkMode,
@@ -87,34 +69,11 @@ const reducer = (state: IAppState, action: Action) => {
 
 const AppState: IAppState = {
   darkMode: false,
-  todos,
+  todos: [],
   loading: false,
   error: "",
+  filter: "all",
 };
-
-type Action =
-  | {
-      type: "CREATE_TODO";
-      payload: ITodo;
-    }
-  | {
-      type: "DELETE_TODO";
-      payload: ITodo;
-    }
-  | {
-      type: "UPDATE_TODO";
-      payload: ITodo;
-    }
-  | {
-      type: "LOADING";
-    }
-  | {
-      type: "ERROR";
-      payload: string;
-    }
-  | {
-      type: "TOGGLE_DARK_MODE";
-    };
 
 const AppContext = createContext<{
   state: IAppState;

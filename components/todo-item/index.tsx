@@ -1,6 +1,7 @@
 import React from "react";
 import { useAppContext } from "../../context";
 import { ITodo } from "../../types";
+import styles from "./TodoItem.module.scss";
 
 function TodoItem({ id, title, completed }: ITodo) {
   const { dispatch } = useAppContext();
@@ -10,8 +11,11 @@ function TodoItem({ id, title, completed }: ITodo) {
   };
 
   return (
-    <li className={completed ? "completed" : ""}>
-      {title} <button onClick={handleDelete}>X</button>
+    <li className={styles.container}>
+      <p className={`${completed ? styles.completed : ""}`}>{title}</p>{" "}
+      <button className={styles.icon} onClick={handleDelete}>
+        X
+      </button>
     </li>
   );
 }

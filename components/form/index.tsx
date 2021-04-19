@@ -1,9 +1,13 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useAppContext } from "../../context";
+import styles from "./Form.module.scss";
 
 function Form() {
   const [todo, setTodo] = useState("");
-  const { dispatch } = useAppContext();
+  const {
+    state: { todos },
+    dispatch,
+  } = useAppContext();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTodo(e.target.value);
@@ -13,12 +17,17 @@ function Form() {
     e.preventDefault();
     dispatch({
       type: "CREATE_TODO",
-      payload: { id: "todo-7", title: todo, completed: false },
+      payload: {
+        id: `todo-${todos.length + 1}`,
+        title: todo,
+        completed: false,
+      },
     });
+    setTodo("");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <input onChange={handleChange} value={todo} />
     </form>
   );

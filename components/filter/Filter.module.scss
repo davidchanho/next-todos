@@ -1,0 +1,19 @@
+@use 'styles' as *;
+
+.filter {
+  font-size: 0.7778rem;
+  letter-spacing: -0.0106rem;
+  font-weight: $font-weight-bold;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

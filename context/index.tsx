@@ -32,7 +32,7 @@ const reducer = (state: IAppState, action: Action) => {
     case ActionType.DELETE_TODO:
       return {
         ...state,
-        todos: state.todos.filter((todo) => todo.id !== action.payload.id),
+        todos: state.todos.filter((todo) => todo._id !== action.payload._id),
       };
     case ActionType.UPDATE_TODO:
       // const todoIndex = state.todos.findIndex(state.todos)

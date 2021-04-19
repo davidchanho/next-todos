@@ -3,12 +3,12 @@ import { useAppContext } from "../../context";
 import TodoItem from "../todo-item";
 import TodoItemSkeleton from "../todo-item-skeleton";
 
-function TodoList() {
-  const {
-    state: { todos, loading },
-  } = useAppContext();
-
+export const useTodos = () => {
   const renderTodos = () => {
+    const {
+      state: { todos, loading },
+    } = useAppContext();
+
     if (loading) {
       return <TodoItemSkeleton />;
     }
@@ -16,13 +16,11 @@ function TodoList() {
     return (
       <>
         {todos?.map((todo) => (
-          <TodoItem key={todo.id} {...todo} />
+          <TodoItem key={todo._id} {...todo} />
         ))}
       </>
     );
   };
 
-  return <ul>{renderTodos()}</ul>;
-}
-
-export default TodoList;
+  return { renderTodos };
+};

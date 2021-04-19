@@ -1,14 +1,10 @@
 import React from "react";
-import { useAppContext } from "../../context";
 import { ITodo } from "../../types";
 import styles from "./TodoItem.module.scss";
+import { useDeleteTodo } from "./useDeleteTodo";
 
-function TodoItem({ id, title, completed }: ITodo) {
-  const { dispatch } = useAppContext();
-
-  const handleDelete = () => {
-    dispatch({ type: "DELETE_TODO", payload: { id, title, completed } });
-  };
+function TodoItem({ _id, title, completed }: ITodo) {
+  const { handleDelete } = useDeleteTodo({ _id, title, completed });
 
   return (
     <li className={styles.container}>

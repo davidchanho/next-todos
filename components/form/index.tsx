@@ -1,34 +1,12 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
-import { useAppContext } from "../../context";
+import React from "react";
 import styles from "./Form.module.scss";
+import { useForm } from "./useForm";
 
 function Form() {
-  const [todo, setTodo] = useState("");
-  const {
-    state: { todos },
-    dispatch,
-  } = useAppContext();
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setTodo(e.target.value);
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    dispatch({
-      type: "CREATE_TODO",
-      payload: {
-        id: `todo-${todos.length + 1}`,
-        title: todo,
-        completed: false,
-      },
-    });
-    setTodo("");
-  };
-
+  const { handleChange, handleSubmit, todo } = useForm();
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <input onChange={handleChange} value={todo} />
+      <input placeholder="todo" onChange={handleChange} value={todo} />
     </form>
   );
 }

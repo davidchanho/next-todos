@@ -1,12 +1,13 @@
 import React from "react";
 import Filter from "../filter";
-import TodoList from "../todo-list";
 import styles from "./Todo.module.scss";
+import { useTodos } from "./useTodos";
 
 function Todo() {
+  const { renderTodos } = useTodos();
   return (
     <div className={styles.container}>
-      <TodoList />
+      <ul>{renderTodos()}</ul>
       <Filter />
     </div>
   );

@@ -1,36 +1,19 @@
 import React from "react";
-import { useAppContext } from "../../context";
 import styles from "./DarkMode.module.scss";
+import { useDarkMode } from "./useDarkMode";
 
 function DarkMode() {
-  const {
-    state: { darkMode },
-    dispatch,
-  } = useAppContext();
-
-  const toggleDarkMode = () => {
-    dispatch({ type: "TOGGLE_DARK_MODE" });
-  };
+  const { darkMode, toggleDarkMode } = useDarkMode();
 
   return (
     <button className={styles.toggle} onClick={toggleDarkMode}>
-      {darkMode ? (
-        <img
-          className={styles.icon}
-          src="/icon-moon.svg"
-          alt=""
-          width="19.32"
-          height="20"
-        />
-      ) : (
-        <img
-          className={styles.icon}
-          src="/icon-sun.svg"
-          alt=""
-          width="19.32"
-          height="20"
-        />
-      )}
+      <img
+        className={styles.icon}
+        src={darkMode ? "/icon-moon.svg" : "/icon-sun.svg"}
+        alt="dark mode icon"
+        width="19.32"
+        height="20"
+      />
     </button>
   );
 }

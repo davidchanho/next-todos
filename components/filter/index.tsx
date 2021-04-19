@@ -1,16 +1,9 @@
 import React from "react";
-import { useAppContext } from "../../context";
 import styles from "./Filter.module.scss";
+import { useFilter } from "./useFilter";
 
 function Filter() {
-  const {
-    state: { todos },
-    dispatch,
-  } = useAppContext();
-
-  const handleClearCompleted = () => {
-    dispatch({ type: "CLEAR_COMPLETED_TODOS" });
-  };
+  const { todos, handleClearCompleted } = useFilter();
 
   return (
     <div className={styles.container}>

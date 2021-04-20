@@ -12,18 +12,24 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   font-size: 0.6667rem;
   letter-spacing: -0.0094rem;
   color: $light-gray-500;
   background-color: $white;
   border-bottom: 0.0556rem solid $light-gray-300;
-  padding: 1.1111rem 0.8889rem;
+  padding: $padding;
+  border-radius: $border-radius;
 }
 
-.icon {
-  border: none;
-  outline: none;
-  background-color: inherit;
-  cursor: pointer;
+.title {
+  flex: 1;
+}
+
+.options {
+  button {
+    border: none;
+    outline: none;
+    background-color: inherit;
+    cursor: pointer;
+  }
 }

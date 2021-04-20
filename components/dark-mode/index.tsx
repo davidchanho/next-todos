@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./DarkMode.module.scss";
 import { useDarkMode } from "../../hooks/useDarkMode";
+import styles from "./DarkMode.module.scss";
 
 function DarkMode() {
   const { darkMode, toggleDarkMode } = useDarkMode();
@@ -8,7 +8,6 @@ function DarkMode() {
   return (
     <button className={styles.toggle} onClick={toggleDarkMode}>
       <img
-        className={styles.icon}
         src={darkMode ? "/icon-moon.svg" : "/icon-sun.svg"}
         alt="dark mode icon"
         width="19.32"

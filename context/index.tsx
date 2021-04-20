@@ -1,3 +1,4 @@
+import produce from "immer";
 import {
   createContext,
   PropsWithChildren,
@@ -23,61 +24,50 @@ const AppState: IAppState = {
   ...TodoState,
 };
 
-const reducer = (state: IAppState, action: Action) => {
-  switch (action.type) {
-    case ActionType.FETCH_TODOS:
-      return {
-        ...state,
-        todos: action.payload,
-        loading: false,
-      };
-    case ActionType.CREATE_TODO:
-      return {
-        ...state,
-        todos: [...state.todos, action.payload],
-      };
-    case ActionType.DELETE_TODO:
-      return {
-        ...state,
-        todos: state.todos.filter((todo) => todo._id !== action.payload._id),
-      };
-    case ActionType.UPDATE_TODO:
-      // const todoIndex = state.todos.findIndex(state.todos)
-
-      return {
-        ...state,
-        todos: state.todos.push(action.payload),
-      };
-    case ActionType.CLEAR_COMPLETED_TODOS:
-      return {
-        ...state,
-        todos: state.todos.filter((todo) => todo.completed === false),
-      };
-    case ActionType.FILTER_TODOS:
-      return {
-        ...state,
-        todos: state.todos[action.payload],
-      };
-    case ActionType.LOADING:
-      return {
-        ...state,
-        loading: true,
-      };
-    case ActionType.ERROR:
-      return {
-        ...state,
-        error: action.payload,
-        loading: false,
-      };
-    case ActionType.TOGGLE_DARK_MODE:
-      return {
-        ...state,
-        darkMode: !state.darkMode,
-      };
-    default:
-      return state;
-  }
-};
+const reducer = (state: IAppState, action: Action) =>
+  produce(state, (draft) => {
+    switch (action.type) {
+      case ActionType.FETCH_TODOS:
+        draft.todos = action.payload;
+        draft.loading = false;
+        return draft;
+      case ActionType.CREATE_TODO:
+        draft.todos = [...draft.todos, action.payload];
+        return draft;
+      case ActionType.DELETE_TODO:
+        draft.todos = draft.todos.filter(
+          (todo) => todo._id !== action.payload._id
+        );
+        return draft;
+      case ActionType.UPDATE_TODO:
+        const updateIndex = draft.todos.findIndex(action.payload._id);
+        draft.todos[updateIndex] = action.payload;
+        return draft;
+      case ActionType.TOGGLE_COMPLETED_TODO:
+        const toggleIndex = draft.todos.findIndex(action.payload._id);
+        draft.todos[toggleIndex].completed = !draft.todos[toggleIndex]
+          .completed;
+        return draft;
+      case ActionType.CLEAR_COMPLETED_TODOS:
+        draft.todos = draft.todos.filter((todo) => todo.completed === false);
+        return draft;
+      case ActionType.FILTER_TODOS:
+        draft.todos = draft.todos[action.payload];
+        return draft;
+      case ActionType.LOADING:
+        draft.loading = true;
+        return draft;
+      case ActionType.ERROR:
+        draft.error = action.payload;
+        draft.loading = false;
+        return draft;
+      case ActionType.TOGGLE_DARK_MODE:
+        draft.darkMode = !draft.darkMode;
+        return draft;
+      default:
+        return draft;
+    }
+  });
 
 const AppContext = createContext<{
   state: IAppState;

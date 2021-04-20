@@ -7,7 +7,7 @@ function Todo() {
   const { renderTodos } = useTodos();
   return (
     <Card>
-      <ul>{renderTodos()}</ul>
+      {renderTodos()}
       <Filter />
     </Card>
   );

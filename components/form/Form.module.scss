@@ -1,5 +1,15 @@
 @use 'styles' as *;
 
+.container {
+  width: 100%;
+  background-color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $padding;
+  border-radius: $border-radius;
+}
+
 .form {
   width: 100%;
   font-size: 0.6667rem;
@@ -8,6 +18,14 @@
 }
 
 .input {
-  width: 100%;
-  padding: 1.1111rem 0.8889rem;
+  border: none;
+  outline: none;
+}
+
+.circle {
+  width: 1.1111rem;
+  height: 1.1111rem;
+  margin-right: 0.6667rem;
+  border-radius: 50%;
+  border: 0.0625rem solid $light-gray-50;
 }

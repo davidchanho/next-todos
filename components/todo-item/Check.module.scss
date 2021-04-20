@@ -1,0 +1,31 @@
+@use 'styles' as *;
+
+.circle {
+  width: 1.1111rem;
+  height: 1.1111rem;
+  margin-right: 0.6667rem;
+  border-radius: 50%;
+  border: 0.0625rem solid transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.unchecked {
+  border: 0.0556rem solid $light-gray-50;
+  img {
+      display: none;
+  }
+}
+
+.checked {
+  border: 0.0556rem solid white;
+  background: rgb(85, 221, 255);
+  background: linear-gradient(
+    140deg,
+    rgba(85, 221, 255, 1) 0%,
+    rgba(192, 88, 243, 1) 100%
+  );
+  background-color: $gradient;
+}

@@ -43,7 +43,9 @@ function Filter() {
           Completed
         </li>
       </ul>
-      <button onClick={handleClearCompleted}>Clear Completed</button>
+      <button className={styles.clear} onClick={handleClearCompleted}>
+        Clear Completed
+      </button>
     </Card>
   );
 }

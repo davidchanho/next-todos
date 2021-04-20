@@ -10,6 +10,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: $white;
+  color: $black;
+  padding: $padding;
 }
 
 .options {
@@ -24,4 +27,11 @@
 
 .active {
   color: $primary;
+}
+
+.clear {
+  outline: none;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
 }

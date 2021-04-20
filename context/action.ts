@@ -22,6 +22,11 @@ interface UpdateTodoAction {
   payload: ITodo;
 }
 
+interface ToggleCompletedTodoAction {
+  type: ActionType.TOGGLE_COMPLETED_TODO;
+  payload: ITodo;
+}
+
 interface ClearCompletedTodosAction {
   type: ActionType.CLEAR_COMPLETED_TODOS;
 }
@@ -49,6 +54,7 @@ export type Action =
   | CreateTodoAction
   | DeleteTodoAction
   | UpdateTodoAction
+  | ToggleCompletedTodoAction
   | ClearCompletedTodosAction
   | FilterTodosAction
   | ToggleDarkModeAction

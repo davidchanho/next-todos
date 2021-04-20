@@ -1,3 +1,5 @@
+@use 'styles' as *;
+
 .container {
-  padding: 1.1111rem 0.8889rem;
+  padding: $padding;
 }

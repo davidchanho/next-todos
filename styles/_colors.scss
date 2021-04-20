@@ -1,9 +1,10 @@
 $primary: hsl(220, 98%, 61%);
-$background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+$gradient: linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 
 $white: hsl(0, 0%, 100%);
 $black: hsl(0, 100%, 100%);
 
+$light-gray-50: hsl(0, 0%, 59%);
 $light-gray-100: hsl(0, 0%, 98%);
 $light-gray-200: hsl(236, 33%, 92%);
 $light-gray-300: hsl(233, 11%, 84%);

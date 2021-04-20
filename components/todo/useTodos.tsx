@@ -14,11 +14,11 @@ export const useTodos = () => {
     }
 
     return (
-      <>
+      <ul>
         {todos?.map((todo) => (
           <TodoItem key={todo._id} {...todo} />
         ))}
-      </>
+      </ul>
     );
   };
 

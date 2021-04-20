@@ -1,15 +1,15 @@
 import React from "react";
+import Card from "../card";
 import Filter from "../filter";
-import styles from "./Todo.module.scss";
 import { useTodos } from "./useTodos";
 
 function Todo() {
   const { renderTodos } = useTodos();
   return (
-    <div className={styles.container}>
+    <Card>
       <ul>{renderTodos()}</ul>
       <Filter />
-    </div>
+    </Card>
   );
 }
 

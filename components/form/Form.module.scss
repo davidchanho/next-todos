@@ -1,7 +1,13 @@
 @use 'styles' as *;
 
 .form {
+  width: 100%;
   font-size: 0.6667rem;
   letter-spacing: -0.0094rem;
   border-radius: $border-radius;
+}
+
+.input {
+  width: 100%;
+  padding: 1.1111rem 0.8889rem;
 }

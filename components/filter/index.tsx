@@ -1,20 +1,50 @@
 import React from "react";
+import Card from "../card";
 import styles from "./Filter.module.scss";
+import { useClearCompleted } from "./useClearCompleted";
 import { useFilter } from "./useFilter";
 
 function Filter() {
-  const { todos, handleClearCompleted } = useFilter();
+  const {
+    todos,
+    filter,
+    handleFilterAll,
+    handleFilterActive,
+    handleFilterCompleted,
+  } = useFilter();
+  const { handleClearCompleted } = useClearCompleted();
 
   return (
-    <div className={styles.container}>
+    <Card className={styles.container}>
       <p>{todos?.length} items left</p>
       <ul className={styles.options}>
-        <li>All</li>
-        <li>Active</li>
-        <li>Completed</li>
+        <li
+          onClick={handleFilterAll}
+          className={`${styles.option} ${
+            filter === "all" ? styles.active : ""
+          }`}
+        >
+          All
+        </li>
+        <li
+          onClick={handleFilterActive}
+          className={`${styles.option} ${
+            filter === "active" ? styles.active : ""
+          }`}
+        >
+          Active
+        </li>
+        <li
+          onClick={handleFilterCompleted}
+          className={`${styles.option} ${
+            filter === "completed" ? styles.active : ""
+          }`}
+        >
+          Completed
+        </li>
       </ul>
       <button onClick={handleClearCompleted}>Clear Completed</button>
-    </div>
+    </Card>
   );
 }
 

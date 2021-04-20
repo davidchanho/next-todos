@@ -1,0 +1,13 @@
+@use 'styles' as *;
+
+@mixin themable($background-color, $text-color) {
+  body {
+    background-color: $background-color;
+    color: $text-color;
+  }
+
+  .card {
+    border-radius: $border-radius;
+    padding: 1.1111rem 0.8889rem;
+  }
+}

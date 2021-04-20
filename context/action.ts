@@ -1,4 +1,5 @@
 import { ITodo } from "../types";
+import { IFilter } from "./../types/index";
 import { ActionType } from "./actionTypes";
 
 interface FetchTodosAction {
@@ -25,6 +26,11 @@ interface ClearCompletedTodosAction {
   type: ActionType.CLEAR_COMPLETED_TODOS;
 }
 
+interface FilterTodosAction {
+  type: ActionType.FILTER_TODOS;
+  payload: IFilter;
+}
+
 interface ToggleDarkModeAction {
   type: ActionType.TOGGLE_DARK_MODE;
 }
@@ -44,6 +50,7 @@ export type Action =
   | DeleteTodoAction
   | UpdateTodoAction
   | ClearCompletedTodosAction
+  | FilterTodosAction
   | ToggleDarkModeAction
   | LoadingAction
   | ErrorAction;

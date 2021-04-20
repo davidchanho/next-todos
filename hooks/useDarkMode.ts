@@ -1,5 +1,5 @@
-import { useAppContext } from "../../context";
-import { ActionType } from "../../context/actionTypes";
+import { useAppContext } from "../context";
+import { ActionType } from "../context/actionTypes";
 
 export const useDarkMode = () => {
   const {

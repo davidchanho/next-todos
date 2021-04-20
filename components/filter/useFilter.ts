@@ -1,15 +1,25 @@
 import { useAppContext } from "../../context";
-import { ActionType } from "../../context/actionTypes";
 
 export const useFilter = () => {
   const {
-    state: { todos },
-    dispatch,
+    state: { todos, filter },
   } = useAppContext();
 
-  const handleClearCompleted = () => {
-    dispatch({ type: ActionType.CLEAR_COMPLETED_TODOS });
+  const handleFilterAll = () => {
+    
+  };
+  const handleFilterActive = () => {
+    
+  };
+  const handleFilterCompleted = () => {
+    
   };
 
-  return { todos, handleClearCompleted };
+  return {
+    todos,
+    filter,
+    handleFilterAll,
+    handleFilterActive,
+    handleFilterCompleted,
+  };
 };

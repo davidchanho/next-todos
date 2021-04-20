@@ -7,14 +7,21 @@ import {
 import { IFilter, ITodo } from "../types";
 import { Action } from "./action";
 import { ActionType } from "./actionTypes";
+import { ThemeState } from "./theme";
+import { TodoState } from "./todos";
 
 interface IAppState {
   darkMode: boolean;
   todos: ITodo[];
   loading: boolean;
-  error: "";
+  error: string;
   filter: IFilter;
 }
+
+const AppState: IAppState = {
+  ...ThemeState,
+  ...TodoState,
+};
 
 const reducer = (state: IAppState, action: Action) => {
   switch (action.type) {
@@ -46,6 +53,11 @@ const reducer = (state: IAppState, action: Action) => {
         ...state,
         todos: state.todos.filter((todo) => todo.completed === false),
       };
+    case ActionType.FILTER_TODOS:
+      return {
+        ...state,
+        todos: state.todos[action.payload],
+      };
     case ActionType.LOADING:
       return {
         ...state,
@@ -65,14 +77,6 @@ const reducer = (state: IAppState, action: Action) => {
     default:
       return state;
   }
-};
-
-const AppState: IAppState = {
-  darkMode: false,
-  todos: [],
-  loading: false,
-  error: "",
-  filter: "all",
 };
 
 const AppContext = createContext<{

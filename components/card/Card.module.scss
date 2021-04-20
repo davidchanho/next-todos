@@ -1,0 +1,10 @@
+@use 'styles' as *;
+
+.container {
+  border-radius: $border-radius;
+  padding: 1.1111rem 0.8889rem;
+}
+
+.dark {
+  background-color: $dark-blue-200;
+}
